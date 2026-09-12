@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "C/C++: gcc build active file",
+            "command": "cmd.exe",
+            "args": [
+                "/c",
+                "set PATH=C:\\msys64\\ucrt64\\bin;%PATH% && gcc -g PhyEngine.c -o PhyEngine.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Compiler: C:/msys64/ucrt64/bin/gcc.exe"
+        }
+    ]
+}
