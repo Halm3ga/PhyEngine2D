@@ -1,0 +1,17 @@
+{
+    "terminal.integrated.env.windows": {
+        "PATH": "C:\\msys64\\ucrt64\\bin;${env:PATH}"
+    },
+    "C_Cpp.default.compilerPath": "C:\\msys64\\ucrt64\\bin\\clang.exe",
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.default.intelliSenseMode": "windows-gcc-x64",
+    "code-runner.executorMap": {
+        "c": "clang -std=c11 \"$fileName\" -o \"$fileNameWithoutExt.exe\" -lm && .\\\"$fileNameWithoutExt.exe\"",
+        "cpp": "clang++ \"$fileName\" -o \"$fileNameWithoutExt.exe\" -lm && .\\\"$fileNameWithoutExt.exe\""
+    },
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.ignoreSelection": true
+}

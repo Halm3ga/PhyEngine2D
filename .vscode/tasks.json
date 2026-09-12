@@ -2,15 +2,25 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "shell",
-            "label": "C/C++: gcc build active file",
-            "command": "cmd.exe",
+            "label": "C: Compile active file",
+            "type": "process",
+            "command": "C:\\msys64\\ucrt64\\bin\\clang.exe",
             "args": [
-                "/c",
-                "set PATH=C:\\msys64\\ucrt64\\bin;%PATH% && gcc -g PhyEngine.c -o PhyEngine.exe"
+                "-x",
+                "c",
+                "-std=c11",
+                "-Wall",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-lm"
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${fileDirname}",
+                "env": {
+                    "PATH": "C:\\msys64\\ucrt64\\bin;${env:PATH}"
+                }
             },
             "problemMatcher": [
                 "$gcc"
@@ -19,7 +29,61 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "Compiler: C:/msys64/ucrt64/bin/gcc.exe"
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "detail": "Compile the active C source file with Clang and generate a .exe for debugging or running."
+        },
+        {
+            "label": "C: Run active file",
+            "type": "process",
+            "dependsOn": "C: Compile active file",
+            "dependsOrder": "sequence",
+            "command": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "options": {
+                "cwd": "${fileDirname}",
+                "env": {
+                    "PATH": "C:\\msys64\\ucrt64\\bin;${env:PATH}"
+                }
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "detail": "Build the file, then run the generated executable."
+        },
+        {
+            "label": "Run C Program (Clang)",
+            "type": "process",
+            "dependsOn": "C: Compile active file",
+            "dependsOrder": "sequence",
+            "command": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "options": {
+                "cwd": "${fileDirname}",
+                "env": {
+                    "PATH": "C:\\msys64\\ucrt64\\bin;${env:PATH}"
+                }
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "detail": "Backward-compatible run task for the current C file."
         }
     ]
 }
